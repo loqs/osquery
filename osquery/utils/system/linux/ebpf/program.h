@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include <osquery/utils/expected/expected.h>
 
 #include <linux/bpf.h>
