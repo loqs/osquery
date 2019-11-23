@@ -40,16 +40,13 @@ Expected<Program, Program::Error> Program::load(
   constexpr auto kLogBufSize = std::uint32_t{1 << 16};
 
   auto bpf_log_buf = std::array<char, kLogBufSize>{};
-  union bpf_attr attr = {
-      .prog_type = program_type,
-      .insns = reinterpret_cast<__aligned_u64>(prog.data()),
-      .insn_cnt = static_cast<std::uint32_t>(prog.size()),
-      .license = reinterpret_cast<__aligned_u64>(kLicense),
-      .log_buf = 0u,
-      .log_size = 0u,
-      .log_level = 0u,
-      .kern_version = LINUX_VERSION_CODE,
-  };
+  union bpf_attr attr{};
+  attr.prog_type = program_type;
+  attr.insns = reinterpret_cast<__aligned_u64>(prog.data());
+  attr.insn_cnt = static_cast<std::uint32_t>(prog.size());
+  attr.license = reinterpret_cast<__aligned_u64>(kLicense);
+  attr.kern_version = LINUX_VERSION_CODE;
+
   if (debug) {
     bpf_log_buf.fill('\0');
     attr.log_buf = reinterpret_cast<std::uint64_t>(bpf_log_buf.data());

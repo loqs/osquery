@@ -12,10 +12,10 @@ function(setupBuildFlags)
   if(DEFINED PLATFORM_POSIX)
 
     set(posix_common_compile_options
-      -Qunused-arguments
+      #-Qunused-arguments
       -Wno-shadow-field
-      -Wall
-      -Wextra
+      #-Wall
+      #-Wextra
       -Wno-unused-local-typedef
       -Wno-deprecated-register
       -Wno-unknown-warning-option
@@ -36,13 +36,13 @@ function(setupBuildFlags)
       -ffunction-sections
       -fvisibility=hidden
       -fvisibility-inlines-hidden
-      -fno-limit-debug-info
+      #-fno-limit-debug-info
       -pipe
       -pedantic
     )
 
     if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-      list(APPEND posix_common_compile_options INTERFACE -Oz)
+      list(APPEND posix_common_compile_options INTERFACE -O2)
     endif()
 
     set(osquery_posix_common_defines
@@ -101,13 +101,12 @@ function(setupBuildFlags)
       )
 
       set(linux_cxx_link_options
-        --no-undefined
+        #--no-undefined
         -lresolv
         -pthread
       )
 
       set(linux_cxx_link_libraries
-        c++abi
         rt
         dl
       )
@@ -154,7 +153,6 @@ function(setupBuildFlags)
         cups
         bsm
         xar
-        c++abi
       )
 
       set(osquery_macos_common_defines
