@@ -32,7 +32,7 @@ function(librariesMain)
 
   if(DEFINED PLATFORM_POSIX)
     set(compile_options
-      -Oz
+      -O2
       -g0
     )
   endif()

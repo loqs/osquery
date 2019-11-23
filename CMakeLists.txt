@@ -16,7 +16,6 @@ include(cmake/utilities.cmake)
 include(cmake/toolchain.cmake)
 
 project(osquery)
-
 if(OSQUERY_BUILD_TESTS)
   enable_testing()
 endif()
