@@ -8,8 +8,9 @@ cmake_minimum_required(VERSION 3.15)
 include("${CMAKE_CURRENT_LIST_DIR}/api.cmake")
 
 locateSystemLibrary(
-  NAME ssdeep
-  REQUIRED ${ssdeep_REQUIRED}
-  MAIN_HEADER "fuzzy.h"
-  LIBRARIES "fuzzy"
+  NAME thrift
+  REQUIRED ${thrift_REQUIRED}
+  MAIN_HEADER "thrift/config.h"
+  LIBRARIES "thrift" "thrift_c_glib" "thriftnb" "thriftz" "event"
 )
+
