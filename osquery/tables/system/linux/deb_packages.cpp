@@ -81,7 +81,7 @@ void dpkg_setup(struct pkg_array* packages) {
   modstatdb_init();
   modstatdb_open(msdbrw_readonly);
 
-  pkg_array_init_from_db(packages);
+  pkg_array_init_from_hash(packages);
   pkg_array_sort(packages, pkg_sorter);
 }
 
@@ -91,7 +91,7 @@ void dpkg_setup(struct pkg_array* packages) {
 void dpkg_teardown(struct pkg_array* packages) {
   pkg_array_destroy(packages);
 
-  pkg_db_reset();
+  pkg_hash_reset();
   modstatdb_done();
 
   pop_error_context(ehflag_normaltidy);
