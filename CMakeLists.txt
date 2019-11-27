@@ -141,6 +141,7 @@ function(importLibraries)
     "Linux:expat"
     "Linux:dbus"
     "Linux:libcap"
+    "Linux:lmdb"
   )
 
   if(OSQUERY_BUILD_BPF)
