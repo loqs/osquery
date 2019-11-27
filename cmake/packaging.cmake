@@ -171,12 +171,14 @@ function(generateInstallTargets)
     file(COPY "${CMAKE_SOURCE_DIR}/tools/deployment/osquery.example.conf" DESTINATION "${CMAKE_BINARY_DIR}/package/linux")
     install(FILES "${CMAKE_BINARY_DIR}/package/linux/osquery.example.conf" DESTINATION share/osquery COMPONENT osquery)
 
-    install(DIRECTORY "${augeas_lenses_path}/"
-            DESTINATION share/osquery/lenses
-            COMPONENT osquery
-            FILES_MATCHING PATTERN "*.aug"
-            PATTERN "tests" EXCLUDE)
-    install(FILES "${augeas_lenses_path}/../COPYING" DESTINATION share/osquery/lenses COMPONENT osquery)
+    if(NOT "${augeas_lenses_path}" STREQUAL "")
+      install(DIRECTORY "${augeas_lenses_path}/"
+              DESTINATION share/osquery/lenses
+              COMPONENT osquery
+              FILES_MATCHING PATTERN "*.aug"
+              PATTERN "tests" EXCLUDE)
+      install(FILES "${augeas_lenses_path}/../COPYING" DESTINATION share/osquery/lenses COMPONENT osquery)
+    endif()
 
     if("${PACKAGING_SYSTEM}" STREQUAL "DEB")
       file(COPY "${CMAKE_SOURCE_DIR}/tools/deployment/copyright.debian" DESTINATION "${CMAKE_BINARY_DIR}/package/deb")
