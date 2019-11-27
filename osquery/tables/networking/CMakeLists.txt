@@ -83,6 +83,12 @@ function(generateOsqueryTablesNetworking)
     thirdparty_boost
   )
 
+  if(DEFINED PLATFORM_POSIX)
+    list(APPEND platform_deps
+      resolv
+    )
+  endif()
+
   if(DEFINED PLATFORM_LINUX)
     list(APPEND platform_deps
       thirdparty_libiptables
