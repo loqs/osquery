@@ -75,7 +75,6 @@ function(setupBuildFlags)
       -Wno-c++11-extensions
       -Woverloaded-virtual
       -Wnon-virtual-dtor
-      -Weffc++
       -stdlib=libc++
     )
 
