@@ -56,6 +56,16 @@ function(locateSystemLibrary)
     return()
   endif()
 
+  # Some targets may prefer to link against each specific library. If we have
+  # multiple dependencies, let's also create a interface target for each
+  # one of them
+  list(LENGTH ARGS_LIBRARIES child_library_count)
+  if(${child_library_count} GREATER 1)
+    set(generate_library_aliases true)
+  else()
+    set(generate_library_aliases false)
+  endif()
+
   foreach(current_library_name ${ARGS_LIBRARIES})
     unset(current_library_path CACHE)
     find_library(current_library_path
@@ -74,6 +84,10 @@ function(locateSystemLibrary)
     set_target_properties("${imported_library_name}" PROPERTIES
       IMPORTED_LOCATION "${current_library_path}"
     )
+
+    if(generate_library_aliases)
+      add_library("thirdparty_${current_library_name}" ALIAS "${imported_library_name}")
+    endif()
 
     list(APPEND imported_library_list "${imported_library_name}")
 
