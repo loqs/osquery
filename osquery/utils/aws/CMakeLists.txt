@@ -24,8 +24,8 @@ function(generateOsqueryUtilsAws)
     osquery_remote_transports_transportstls
     osquery_utils_json
     osquery_utils_status
-    thirdparty_aws_core
-    thirdparty_aws_sts
+    thirdparty_aws-cpp-sdk-core
+    thirdparty_aws-cpp-sdk-sts
   )
 
   set(public_header_files
