@@ -8,13 +8,8 @@ cmake_minimum_required(VERSION 3.15)
 include("${CMAKE_CURRENT_LIST_DIR}/api.cmake")
 
 locateSystemLibrary(
-  NAME librpm
-  REQUIRED ${librpm_REQUIRED}
-  MAIN_HEADER "rpm/header.h"
-  LIBRARIES "rpm" "rpmio"
+  NAME lmdb
+  REQUIRED ${bzip2_REQUIRED}
+  MAIN_HEADER "lmdb.h"
+  LIBRARIES "lmdb"
 )
-
-target_link_libraries(librpm INTERFACE
-  lmdb
-)
-
