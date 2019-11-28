@@ -11,7 +11,7 @@ locateSystemLibrary(
   NAME googletest
   REQUIRED ${gtest_REQUIRED}
   MAIN_HEADER "gtest/gtest.h"
-  LIBRARIES "gtest"
+  LIBRARIES "gtest" "gtest_main"
 )
 
 add_library(thirdparty_googletest_headers INTERFACE)
