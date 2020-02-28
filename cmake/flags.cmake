@@ -54,11 +54,9 @@ function(setupBuildFlags)
       -Wno-c++11-extensions
       -Woverloaded-virtual
       -Wnon-virtual-dtor
-      -stdlib=libc++
     )
 
     set(posix_cxx_link_options
-      -stdlib=libc++
       -ldl
     )
 
