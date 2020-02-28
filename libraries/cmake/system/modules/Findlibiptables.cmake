@@ -11,5 +11,5 @@ locateSystemLibrary(
   NAME libiptables
   REQUIRED ${libiptables_REQUIRED}
   MAIN_HEADER "libipq.h"
-  LIBRARIES "ip4tc" "ip6tc" "ipq" "iptc"
+  LIBRARIES "ip4tc" "ip6tc" "ipq"
 )
