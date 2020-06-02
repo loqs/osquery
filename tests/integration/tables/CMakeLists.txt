@@ -160,6 +160,7 @@ function(generateTestsIntegrationTablesTestsTest)
       memory_map.cpp
       msr.cpp
       npm_packages.cpp
+      pacman_packages.cpp
       portage_keywords.cpp
       portage_packages.cpp
       portage_use.cpp
