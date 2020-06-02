@@ -157,6 +157,7 @@ function(generateNativeTables)
     "linux/md_devices.table:linux"
     "linux/process_namespaces.table:linux"
     "linux/syslog_events.table:linux"
+    "linux/pacman_packages.table:linux"
     "linux/rpm_packages.table:linux"
     "linux/portage_packages.table:linux"
     "linux/process_file_events.table:linux"

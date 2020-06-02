@@ -111,6 +111,7 @@ function(importLibraries)
     "Linux:libcryptsetup"
     "Linux:libdevmapper"
     "Linux:libdpkg"
+    "Linux:alpm"
     "Linux:libelfin"
     "Linux:libgcrypt"
     "Linux:libgpg-error"

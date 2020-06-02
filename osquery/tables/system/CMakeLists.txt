@@ -73,6 +73,7 @@ function(generateOsqueryTablesSystemSystemtable)
       linux/mounts.cpp
       linux/npm_packages.cpp
       linux/os_version.cpp
+      linux/pacman_packages.cpp
       linux/pci_devices.cpp
       linux/portage.cpp
       linux/process_open_files.cpp
@@ -268,6 +269,7 @@ function(generateOsqueryTablesSystemSystemtable)
       thirdparty_libelfin
       thirdparty_libcryptsetup
       thirdparty_librpm
+      thirdparty_alpm
       thirdparty_popt
       thirdparty_dbus
       thirdparty_libcap

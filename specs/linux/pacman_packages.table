@@ -1,0 +1,18 @@
+table_name("pacman_packages")
+description("Pacman packages that are currently installed on the host system.")
+schema([
+    Column("name", TEXT, "Pacman package name", index=True),
+    Column("version", TEXT, "Package version" ,index=True),
+    Column("origin", TEXT, "Origin of the package"),
+    Column("url", TEXT, "URL of the package upstream"),
+    Column("md5sum", TEXT, "MD5 hash of the package contents"),
+    Column("sha256sum", TEXT, "SHA256 hash of the package contents"),
+    Column("arch", TEXT, "Architecture the package built for", index=True),
+    Column("packager", TEXT, "Packager of the package"),
+    Column("build_date", INTEGER, "When the package was built"),
+    Column("install_date", INTEGER, "When the package was installed"),
+    Column("package_size", BIGINT, "Package size in bytes"),
+    Column("install_size", BIGINT, "Installed package size in bytes"),
+])
+attributes(cacheable=True)
+implementation("@genPacmanPackages")
