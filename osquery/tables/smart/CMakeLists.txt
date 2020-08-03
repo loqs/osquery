@@ -43,6 +43,8 @@ function(generateOsqueryTablesSmart)
     generateIncludeNamespace(osquery_tables_smart "osquery/tables/smart" "FILE_ONLY" ${public_header_files})
   endif()
 
+  include_directories("${PROJECT_SOURCE_DIR}/libraries/cmake/source/smartmontools/config/linux")
+
   if(DEFINED PLATFORM_POSIX)
     add_test(NAME osquery_tables_smart_tests_smartdrivestests-test COMMAND osquery_tables_smart_tests_smartdrivestests-test)
   endif()
