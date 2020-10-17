@@ -75,11 +75,11 @@ function(smartmontoolsMain)
 
   if(DEFINED PLATFORM_LINUX)
     target_include_directories(thirdparty_smartmontools PRIVATE
-      "${CMAKE_CURRENT_SOURCE_DIR}/config/${TARGET_PROCESSOR}/linux"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/linux"
     )
   elseif(DEFINED PLATFORM_MACOS)
     target_include_directories(thirdparty_smartmontools PRIVATE
-      "${CMAKE_CURRENT_SOURCE_DIR}/config/${TARGET_PROCESSOR}/macos"
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/macos"
     )
   endif()
 
