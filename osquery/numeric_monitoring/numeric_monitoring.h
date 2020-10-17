@@ -11,6 +11,7 @@
 
 #include <chrono>
 #include <string>
+#include <vector>
 
 #include "osquery/utils/conversions/tryto.h"
 #include <osquery/utils/expected/expected.h>

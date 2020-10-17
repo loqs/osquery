@@ -14,6 +14,7 @@
 #include <condition_variable>
 #include <mutex>
 #include <string>
+#include <condition_variable>
 
 namespace osquery {
 
