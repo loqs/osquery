@@ -11,7 +11,12 @@
 
 #include <unordered_map>
 
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 107400
+#include <boost/io/quoted.hpp>
+#else
 #include <boost/io/detail/quoted_manip.hpp>
+#endif
 
 namespace osquery {
 

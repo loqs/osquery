@@ -9,7 +9,12 @@
 
 #include <osquery/experimental/events_stream/events_stream_registry.h>
 
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 107400
+#include <boost/io/quoted.hpp>
+#else
 #include <boost/io/detail/quoted_manip.hpp>
+#endif
 
 #include <osquery/registry/registry_factory.h>
 

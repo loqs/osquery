@@ -14,7 +14,12 @@
 
 #include <osquery/logger/logger.h>
 
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 107400
+#include <boost/io/quoted.hpp>
+#else
 #include <boost/io/detail/quoted_manip.hpp>
+#endif
 
 #include <linux/hw_breakpoint.h>
 #include <linux/perf_event.h>
