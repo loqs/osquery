@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <sys/sysctl.h>
+#include <linux/sysctl.h>
 
 #include <osquery/core/tables.h>
 

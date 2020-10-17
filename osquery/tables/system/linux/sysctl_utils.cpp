@@ -7,8 +7,6 @@
  * SPDX-License-Identifier: (Apache-2.0 OR GPL-2.0-only)
  */
 
-#include <sys/sysctl.h>
-
 #include <boost/algorithm/string/trim.hpp>
 
 #include <osquery/core/tables.h>
@@ -70,20 +68,8 @@ void genControlInfo(int* oid,
                     size_t oid_size,
                     QueryData& results,
                     const std::map<std::string, std::string>& config) {
-  // Get control size
-  size_t response_size = CTL_MAX_VALUE;
-  char response[CTL_MAX_VALUE + 1] = {0};
-  if (sysctl(oid, oid_size, response, &response_size, 0, 0) != 0) {
-    // Cannot request MIB data.
-    return;
-  }
 
-  // Data is output, but no way to determine type (long, int, string, struct).
-  Row r;
-  r["oid"] = stringFromMIB(oid, oid_size);
-  r["current_value"] = std::string(response);
-  r["type"] = "string";
-  results.push_back(r);
+  return;
 }
 
 void genAllControls(QueryData& results,
