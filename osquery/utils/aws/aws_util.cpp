@@ -127,7 +127,7 @@ OsqueryHttpClientFactory::CreateHttpRequest(
 }
 
 std::shared_ptr<Aws::Http::HttpResponse> OsqueryHttpClient::MakeRequest(
-    Aws::Http::HttpRequest& request,
+    const std::shared_ptr<Aws::Http::HttpRequest>& request,
     Aws::Utils::RateLimits::RateLimiterInterface* readLimiter,
     Aws::Utils::RateLimits::RateLimiterInterface* writeLimiter) const {
   // AWS allows rate limiters to be passed around, but we are doing rate
@@ -136,21 +136,21 @@ std::shared_ptr<Aws::Http::HttpResponse> OsqueryHttpClient::MakeRequest(
     LOG(WARNING) << "Read/write limiters are unsupported";
   }
 
-  Aws::Http::URI uri = request.GetUri();
+  Aws::Http::URI uri = request->GetUri();
   uri.SetPath(Aws::Http::URI::URLEncodePath(uri.GetPath()));
   Aws::String url = uri.GetURIString();
 
   http::Client client(TLSTransport().getInternalOptions());
   http::Request req(url);
 
-  for (const auto& requestHeader : request.GetHeaders()) {
+  for (const auto& requestHeader : request->GetHeaders()) {
     req << http::Request::Header(requestHeader.first, requestHeader.second);
   }
 
   std::string body;
-  if (request.GetContentBody()) {
+  if (request->GetContentBody()) {
     std::stringstream ss;
-    ss << request.GetContentBody()->rdbuf();
+    ss << request->GetContentBody()->rdbuf();
     body = ss.str();
   }
 
@@ -158,15 +158,15 @@ std::shared_ptr<Aws::Http::HttpResponse> OsqueryHttpClient::MakeRequest(
   try {
     http::Response resp;
 
-    switch (request.GetMethod()) {
+    switch (request->GetMethod()) {
     case Aws::Http::HttpMethod::HTTP_GET:
       resp = client.get(req);
       break;
     case Aws::Http::HttpMethod::HTTP_POST:
-      resp = client.post(req, body, request.GetContentType());
+      resp = client.post(req, body, request->GetContentType());
       break;
     case Aws::Http::HttpMethod::HTTP_PUT:
-      resp = client.put(req, body, request.GetContentType());
+      resp = client.put(req, body, request->GetContentType());
       break;
     case Aws::Http::HttpMethod::HTTP_HEAD:
       resp = client.head(req);
@@ -180,7 +180,7 @@ std::shared_ptr<Aws::Http::HttpResponse> OsqueryHttpClient::MakeRequest(
       break;
     default:
       LOG(ERROR) << "Unrecognized HTTP Method used: "
-                 << static_cast<int>(request.GetMethod());
+                 << static_cast<int>(request->GetMethod());
       return nullptr;
       break;
     }
@@ -205,13 +205,6 @@ std::shared_ptr<Aws::Http::HttpResponse> OsqueryHttpClient::MakeRequest(
   }
 
   return response;
-}
-
-std::shared_ptr<Aws::Http::HttpResponse> OsqueryHttpClient::MakeRequest(
-    const std::shared_ptr<Aws::Http::HttpRequest>& request,
-    Aws::Utils::RateLimits::RateLimiterInterface* readLimiter,
-    Aws::Utils::RateLimits::RateLimiterInterface* writeLimiter) const {
-  return MakeRequest(*request, readLimiter, writeLimiter);
 }
 
 Aws::Auth::AWSCredentials
