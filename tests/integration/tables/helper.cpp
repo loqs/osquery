@@ -17,7 +17,12 @@
 
 #include <gtest/gtest.h>
 
-#include <boost/algorithm/string.hpp>
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 107400
+#include <boost/io/quoted.hpp>
+#else
+#include <boost/io/detail/quoted_manip.hpp>
+#endif
 
 // TODO(5591) Remove this when addressed by Boost's ASIO config.
 // https://www.boost.org/doc/libs/1_67_0/boost/asio/detail/config.hpp

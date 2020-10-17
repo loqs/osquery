@@ -10,7 +10,12 @@
 #include <gtest/gtest.h>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 107400
+#include <boost/io/quoted.hpp>
+#else
 #include <boost/io/detail/quoted_manip.hpp>
+#endif
 
 #include <osquery/utils/error/error.h>
 

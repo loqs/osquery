@@ -10,7 +10,12 @@
 #include <osquery/utils/system/linux/ebpf/program.h>
 #include <osquery/utils/system/linux/ebpf/ebpf.h>
 
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 107400
+#include <boost/io/quoted.hpp>
+#else
 #include <boost/io/detail/quoted_manip.hpp>
+#endif
 
 #include <linux/version.h>
 

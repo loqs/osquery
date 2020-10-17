@@ -9,7 +9,12 @@
 
 #include <unordered_map>
 
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 107400
+#include <boost/io/quoted.hpp>
+#else
 #include <boost/io/detail/quoted_manip.hpp>
+#endif
 
 #include <osquery/core/flags.h>
 #include <osquery/dispatcher/dispatcher.h>
