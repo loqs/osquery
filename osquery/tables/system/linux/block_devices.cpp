@@ -20,13 +20,13 @@
 #include <osquery/logger/logger.h>
 
 extern "C" {
-#include <lvm2app.h>
 #include <sys/sysmacros.h>
 }
 
 namespace osquery {
 namespace tables {
 
+#if 0
 void populatePVChildren(lvm_t lvm,
                         const std::string& devname,
                         const std::string& pvid,
@@ -61,6 +61,7 @@ void populatePVChildren(lvm_t lvm,
   }
   lvm_vg_close(vg);
 }
+#endif
 
 static void getBlockDevice(struct udev_device* dev,
                            QueryData& results,
@@ -124,6 +125,7 @@ static void getBlockDevice(struct udev_device* dev,
       if (!blkid_probe_lookup_value(pr, "LABEL", &blk_value, nullptr)) {
         r["label"] = blk_value;
       }
+#if 0
       if (boost::algorithm::starts_with(r["type"], "LVM")) {
         lvm_t lvm = lvm_init(nullptr);
         if (lvm != nullptr) {
@@ -131,6 +133,7 @@ static void getBlockDevice(struct udev_device* dev,
           lvm_quit(lvm);
         }
       }
+#endif
     }
     blkid_free_probe(pr);
   }

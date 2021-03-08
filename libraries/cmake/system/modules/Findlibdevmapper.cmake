@@ -11,5 +11,5 @@ locateSystemLibrary(
   NAME libdevmapper
   REQUIRED ${libdevmapper_REQUIRED}
   MAIN_HEADER "libdevmapper.h"
-  LIBRARIES "devmapper" "lvm2app"
+  LIBRARIES "devmapper"
 )
